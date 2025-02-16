@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Video Effects</title>
+</head>
+<body>
+
+  <h1>Video Effects with Canvas</h1>
+
+  <video id="video" width="600" autoplay muted>
+    <source src="your-video-file.mp4" type="video/mp4">
+  </video>
+
+  <canvas id="canvas" width="600" height="400"></canvas>
+
+  <script>
+    const video = document.getElementById('video');
+    const canvas = document.getElementById('canvas');
+    const ctx = canvas.getContext('2d');
+
+    video.addEventListener('play', function() {
+      function draw() {
+        if (video.paused || video.ended) return;
+        ctx.drawImage(video, 0, 0, canvas.width, canvas.height);
+        requestAnimationFrame(draw);
+      }
+      draw();
+    });
+  </script>
+
+</body>
+</html>
